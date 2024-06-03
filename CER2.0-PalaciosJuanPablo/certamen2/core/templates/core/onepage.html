@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="static\estilos.css" type= "text/css">
+
+    <title>Titulo responsive</title>
+</head>
+<body>
+    <!--Barra del navegador :D-->
+    <header>
+        <a class="logo">
+            <img src="static\BarraColores.png" alt="BarraColores de la u">
+            <h2 class="Name header"> PIE USM SVM </h2> 
+        </a>
+        <nav> <!-- Agregar los links de navegacion-->
+            <a href="#header" class="nav-link">Inicio</a>
+            <a href="#proyectos" class="nav-link">Proyectos</a>
+            <a href="#login" class="nav-link">Iniciar Sesión</a>
+        </nav>
+    </header>
+    <!-- Sección portal proyectos-->
+
+    <div id="header" class="fondo">
+        <div class="text-center">
+            <h1> Portal de Iniciativas Estudiantiles </h1>
+            <h2>Universidad Santa María - Sede Viña del Mar</h2>
+            <button type="button" class="btn btn-primary btn-lg" onclick="scrollToSection('proyectos')">Ver proyectos</button>
+        </div>
+    </div>
+
+    <!-- Sección proyectos-->
+
+    <div class="section" id="proyectos">
+        <h2>Portafolio</h2>
+        <h3>Proyectos Presentados</h3>
+
+        <table class="table table-hover"> <!-- Estructura Table hoverview-->
+            <thead>
+              <tr>
+                <td>Nombre Proyecto</td>
+                <td>Estudiante</td>
+                <td>Tema</td>
+                <td>Profesor</td>
+              </tr>
+            </thead>
+            <tbody>
+                {% for proyecto in lista_proyectos %}               <!-- x Proyecto in lista_proyectos-->
+                <tr>
+                    <td>{{proyecto.proyecto_name}}</td>             <!-- referencia a proyecto_name de .codigo_carrera-->
+                    <td>{{proyecto.proyecto_student}}</td>          <!-- referencia a proyecto_student de .nombre-->
+                    <td>{{proyecto.proyecto_topic}}</td>            <!-- referencia a proyecto_topic de .duracion-->
+                    <td>{{proyecto.proyecto_patrocinador}}</td>     <!-- referencia a proyecto_patrocinador-->
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+    </div>
+
+    <!-- Sección Login-->
+    <div class="section" id="login">
+
+    <form action="" method ="post">
+        {%csrf_token %}
+        <form>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+          </form>
+
+    </form>
+    </div>
+
+</body>
+</html>
